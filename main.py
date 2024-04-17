@@ -27,7 +27,6 @@ else:
     game_url = input("Enter the game's url: ")
 
 id = game_url[game_url.find('game')+5:game_url.rfind('/')]
-print(id)
 req_url = f'https://www.drawbackchess.com/app7/game?id={id}'
 
 with rq.get(req_url) as resp:
@@ -46,5 +45,4 @@ with rq.get(req_url) as resp:
             pgn += to_pgn_symbol(v[1]) + '_'
     pgn = pgn.replace('\\0', '').replace('OOO', 'O-O-O')\
             .replace('OO', 'O-O')
-    print(pgn.strip('_'))
     wb.open(f'https://lichess.org/analysis/pgn/{pgn}')
