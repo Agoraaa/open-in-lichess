@@ -35,14 +35,16 @@ with rq.get(req_url) as resp:
         print('Could not send request. Exiting...')
         exit()
     moves = resp.json()['game']['scoreSheet']
-    print(moves)
     pgn = ''
-    for k,v in list(moves.items())[:-3]:
-        #print(v)
+    for k,v in list(moves.items())[:-1]:
+        if '–' in v[0]:
+            break
         pgn += to_pgn_symbol(v[0]) + '_'
         if len(v) == 2:
+            if '–' in v[1]:
+                break
             pgn += to_pgn_symbol(v[1]) + '_'
-    pgn = pgn.replace('\\0', '').replace('–', '').replace('OOO', 'O-O-O')\
+    pgn = pgn.replace('\\0', '').replace('OOO', 'O-O-O')\
             .replace('OO', 'O-O')
     print(pgn.strip('_'))
     wb.open(f'https://lichess.org/analysis/pgn/{pgn}')

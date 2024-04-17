@@ -1,5 +1,5 @@
 # open-in-lichess
-Open past [drawbackchess.com](https://www.drawbackchess.com) game in lichess. Most games won't work due to invalid moves. It excludes last 3 moves since these are most likely to have invalid moves.
+Open past [drawbackchess.com](https://www.drawbackchess.com) game in lichess. All moves are ported until an invalid one occurs.
 
 ## Usage
 ```
